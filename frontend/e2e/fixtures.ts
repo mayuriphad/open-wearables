@@ -1,5 +1,8 @@
 export const CREDENTIALS = { email: 'dev@example.com', password: 'correct-horse' };
 
+/** The backend's public seed password; signing in with it asks for a new one. */
+export const DEFAULT_PASSWORD = 'your-secure-password';
+
 export const DEVELOPER = {
 	id: '00000000-0000-4000-8000-000000000001',
 	email: CREDENTIALS.email,
@@ -1661,6 +1664,7 @@ export const SEED_PRESETS = [
 			generate_workouts: true,
 			generate_sleep: true,
 			generate_time_series: false,
+			generate_meals: false,
 			providers: null,
 			num_connections: 2,
 			workout_config: {
@@ -1697,6 +1701,13 @@ export const SEED_PRESETS = [
 				date_range_months: 6,
 				date_from: null,
 				date_to: null
+			},
+			meal_config: {
+				meal_count: 50,
+				calories_range: [150, 900],
+				date_range_months: 6,
+				date_from: null,
+				date_to: null
 			}
 		}
 	},
@@ -1709,6 +1720,7 @@ export const SEED_PRESETS = [
 			generate_workouts: true,
 			generate_sleep: true,
 			generate_time_series: true,
+			generate_meals: false,
 			providers: null,
 			num_connections: 2,
 			workout_config: {
@@ -1765,6 +1777,13 @@ export const SEED_PRESETS = [
 				date_range_months: 6,
 				date_from: null,
 				date_to: null
+			},
+			meal_config: {
+				meal_count: 50,
+				calories_range: [150, 900],
+				date_range_months: 6,
+				date_from: null,
+				date_to: null
 			}
 		}
 	},
@@ -1777,6 +1796,7 @@ export const SEED_PRESETS = [
 			generate_workouts: false,
 			generate_sleep: true,
 			generate_time_series: false,
+			generate_meals: false,
 			providers: null,
 			num_connections: 2,
 			workout_config: {
@@ -1810,6 +1830,13 @@ export const SEED_PRESETS = [
 			time_series_config: {
 				enabled_types: [],
 				include_blood_pressure: false,
+				date_range_months: 6,
+				date_from: null,
+				date_to: null
+			},
+			meal_config: {
+				meal_count: 50,
+				calories_range: [150, 900],
 				date_range_months: 6,
 				date_from: null,
 				date_to: null
