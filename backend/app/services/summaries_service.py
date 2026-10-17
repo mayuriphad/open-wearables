@@ -65,6 +65,7 @@ ACTIVITY_METRIC_GROUPS: tuple[tuple[str, ...], ...] = (
     ("steps_sum",),
     ("active_energy_sum",),
     ("basal_energy_sum",),
+    ("total_energy_sum",),
     ("distance_sum",),
     ("flights_climbed_sum",),
     ("active_time_minutes",),

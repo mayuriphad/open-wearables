@@ -87,6 +87,32 @@ class TestFilterByPriority:
         assert result[0]["steps_sum"] == 8000
         assert (result[0]["hr_avg"], result[0]["hr_max"], result[0]["hr_min"]) == (72, 140, 55)
 
+    def test_fills_total_energy_from_a_lower_priority_source(self, db: Session, service: SummariesService) -> None:
+        day = date(2026, 1, 1)
+        entries = [
+            {
+                "activity_date": day,
+                "source": "garmin",
+                "device_model": None,
+                "steps_sum": 8000,
+                "active_energy_sum": None,
+                "basal_energy_sum": None,
+                "total_energy_sum": None,
+            },
+            {
+                "activity_date": day,
+                "source": "apple_health_sdk",
+                "device_model": None,
+                "steps_sum": None,
+                "active_energy_sum": None,
+                "basal_energy_sum": None,
+                "total_energy_sum": 2100.0,
+            },
+        ]
+        result = service._filter_by_priority(db, uuid4(), entries, fill_missing=ACTIVITY_METRIC_GROUPS)
+        assert result[0]["steps_sum"] == 8000
+        assert result[0]["total_energy_sum"] == 2100.0
+
     def test_fill_never_sums_a_metric_both_sources_report(self, db: Session, service: SummariesService) -> None:
         day = date(2026, 1, 1)
         entries = [
